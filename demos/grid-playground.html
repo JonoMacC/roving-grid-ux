@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roving Grid Playground</title>
+    <link rel="stylesheet" href="grid-playground.css" />
+  </head>
+  <body>
+    <div class="grid"></div>
+    <section class="info">
+      <aside class="tip">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 256 256"
+        >
+          <path
+            d="M108,84a16,16,0,1,1,16,16A16,16,0,0,1,108,84Zm128,44A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Zm-72,36.68V132a20,20,0,0,0-20-20,12,12,0,0,0-4,23.32V168a20,20,0,0,0,20,20,12,12,0,0,0,4-23.32Z"
+          ></path>
+        </svg>
+        <section>
+          <span>Scroll grid to adjust rows and columns</span>
+          <span><kbd>C</kbd> to focus the center cell</span>
+          <div>Focused cell: <output></output></div>
+        </section>
+      </aside>
+    </section>
+  </body>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"
+  ></script>
+  <script src="grid-playground.js" type="module"></script>
+</html>

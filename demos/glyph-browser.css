@@ -1,0 +1,155 @@
+@import "base.css";
+
+:root {
+  --accent: var(--text);
+}
+
+::selection {
+  background-color: var(--text);
+  color: var(--surface-000);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--surface-000);
+  color: var(--text);
+  padding: 0;
+  margin: 0;
+  container: app-container / inline-size;
+  block-size: 100dvh;
+  overflow: auto;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 6rem;
+  gap: var(--space-4);
+  padding: var(--space-2);
+  block-size: 100dvh;
+  overflow: hidden;
+}
+
+main {
+  display: grid;
+  grid-auto-flow: row;
+  gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  overflow: auto;
+}
+
+.charset-heading {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 5rem);
+}
+
+.glyph {
+  font-family: "Space Mono", monospace;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  font-size: 1.5rem;
+  outline-offset: -2px;
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.glyph:hover {
+  background-color: var(--surface-300);
+}
+
+.glyph:focus {
+  outline-color: var(--accent);
+}
+
+#display-container {
+  container: display-container / inline-size;
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+#display {
+  font-family: "Space Mono", monospace;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background-color: var(--accent);
+  color: var(--surface-000);
+  container: display / inline-size;
+  clip-path: polygon(
+    50% 0%,
+    62.5% 3.35%,
+    75% 6.7%,
+    84.15% 15.85%,
+    93.3% 25%,
+    96.65% 37.5%,
+    100% 50%,
+    96.65% 62.5%,
+    93.3% 75%,
+    84.15% 84.15%,
+    75% 93.3%,
+    62.5% 96.65%,
+    50% 100%,
+    37.5% 96.65%,
+    25% 93.3%,
+    15.85% 84.15%,
+    6.7% 75%,
+    3.35% 62.5%,
+    0% 50%,
+    3.35% 37.5%,
+    6.7% 25%,
+    15.85% 15.85%,
+    25% 6.7%,
+    37.5% 3.35%
+  );
+}
+
+#display-glyph {
+  font-size: max(2.5rem, 50cqw);
+  will-change: transform;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease-out;
+}
+
+@container app-container (min-width: 960px) {
+  .app {
+    grid-template-columns: 40rem 1fr;
+    gap: var(--space-6);
+    grid-template-rows: 1fr;
+    block-size: 100%;
+    overflow: auto;
+  }
+
+  main {
+    overflow: unset;
+  }
+
+  #display {
+    --size: min(calc(min(100cqw, 100cqh) - 2 * var(--space-4)), 50rem);
+    width: var(--size);
+    height: unset;
+    position: sticky;
+    top: var(--space-4);
+  }
+}

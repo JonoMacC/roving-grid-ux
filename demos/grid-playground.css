@@ -1,0 +1,157 @@
+@import "base.css";
+
+body {
+  block-size: 100dvh;
+  background-color: var(--surface-000);
+  font-family: sans-serif;
+  color: var(--text);
+  overflow: hidden;
+  padding: var(--space-2);
+  margin: 0;
+  font-size: max(14px, 0.875rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.info {
+  pointer-events: none;
+  position: absolute;
+  padding: var(--space-3);
+  bottom: var(--space-3);
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: end;
+}
+
+.tip {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
+  background-color: var(--tip-surface);
+  border: 1px solid var(--tip-border);
+  padding: var(--space-3);
+  bottom: var(--space-3);
+  right: var(--space-3);
+  border-radius: var(--space-2);
+  inline-size: min(40ch, 100%);
+  color: var(--tip-info);
+}
+
+.tip section {
+  color: var(--tip-text);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.grid {
+  --rows: 9;
+  --columns: 9;
+  --gap: 0.125em;
+  --size: min(90dvh, 90dvw);
+  display: grid;
+  height: var(--size);
+  aspect-ratio: 1 / 1;
+  font-size: clamp(0.5rem, min(0.972dvw, 0.972dvh) + 0.292rem, 0.875rem);
+  grid-auto-flow: row;
+  grid-template: repeat(var(--rows), 1fr) / repeat(var(--columns), 1fr);
+  gap: var(--gap);
+  will-change: transform;
+  transition: transform 0.3s ease-in-out;
+}
+
+.iso {
+  transform: rotate(-45deg) skew(15deg, 15deg);
+}
+
+.row {
+  display: contents;
+}
+
+.cell {
+  background-color: var(--surface-300);
+  color: var(--text-light);
+  flex-grow: 1;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline-offset: -0.0625rem;
+  outline-style: solid;
+  outline-width: 0.0625rem;
+  outline-color: transparent;
+  transition: background-color 0.1s ease-out, outline-color 0.1s ease-out;
+  will-change: transform;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cell:hover {
+  background-color: var(--hover);
+  color: var(--text-hover);
+}
+
+.cell:focus {
+  font-weight: 600;
+  background-color: var(--active);
+  color: var(--text);
+  outline-color: var(--focus);
+  animation: activated-background 800ms cubic-bezier(0, 0.55, 0.45, 1);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.iso .cell:focus {
+  transform: translateX(10px) translateY(-10px);
+  z-index: 1;
+}
+
+.cell[inert] {
+  background-color: var(--surface-100);
+  color: var(--text-faint);
+  pointer-events: none;
+  user-select: none;
+}
+
+.void {
+  background-color: transparent;
+  border: 1px solid var(--surface-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+kbd {
+  background-color: var(--surface-200);
+  color: var(--text-light);
+  font-size: 0.875em;
+  font-weight: 600;
+  box-shadow: 0 3px var(--shadow);
+  font-family: monospace;
+  padding: 0 0.5em;
+  border-radius: 0.125em;
+  user-select: none;
+}
+
+output {
+  color: var(--text-output);
+  font-weight: 500;
+}
+
+@keyframes activated-background {
+  from {
+    background-color: var(--focus);
+  }
+
+  to {
+    background-color: var(--active);
+  }
+}

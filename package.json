@@ -1,0 +1,32 @@
+{
+  "name": "roving-grid-ux",
+  "version": "1.0.0-alpha",
+  "description": "roving focus grid for web ui",
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "exports": "./dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonoMacC/roving-grid-ux.git"
+  },
+  "keywords": [
+    "keyboard ux",
+    "grid navigation",
+    "roving focus"
+  ],
+  "author": "Jon MacCaull",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JonoMacC/roving-grid-ux/issues"
+  },
+  "homepage": "https://github.com/JonoMacC/roving-grid-ux#readme",
+  "devDependencies": {
+    "microbundle": "^0.15.1"
+  }
+}

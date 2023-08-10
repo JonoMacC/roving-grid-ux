@@ -1,0 +1,171 @@
+html {
+  min-block-size: 100%;
+  /* Foundations */
+  /* Tokens from GitHub Primer Web Primitives */
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+
+  /* Neutral */
+  --white: #fff;
+  --black: #1b1f23;
+  --gray-000: #fafbfc;
+  --gray-100: #f6f8fa;
+  --gray-200: #e1e4e8;
+  --gray-300: #d1d5da;
+  --gray-400: #959da5;
+  --gray-500: #6a737d;
+  --gray-600: #586069;
+  --gray-700: #444d56;
+  --gray-800: #2f363d;
+  --gray-900: #24292e;
+
+  /* Colors */
+  --blue-000: #f1f8ff;
+  --blue-100: #dbedff;
+  --blue-200: #c8e1ff;
+  --blue-300: #79b8ff;
+  --blue-400: #2188ff;
+  --blue-500: #0366d6;
+  --blue-600: #005cc5;
+  --blue-700: #044289;
+  --blue-800: #032f62;
+  --blue-900: #05264c;
+
+  --green-000: #f0fff4;
+  --green-100: #dcffe4;
+  --green-200: #bef5cb;
+  --green-300: #85e89d;
+  --green-400: #34d058;
+  --green-500: #28a745;
+  --green-600: #22863a;
+  --green-700: #176f2c;
+  --green-800: #165c26;
+  --green-900: #144620;
+
+  --yellow-000: #fffdef;
+  --yellow-100: #fffbdd;
+  --yellow-200: #fff5b1;
+  --yellow-300: #ffea7f;
+  --yellow-400: #ffdf5d;
+  --yellow-500: #ffd33d;
+  --yellow-600: #f9c513;
+  --yellow-700: #dbab09;
+  --yellow-800: #b08800;
+  --yellow-900: #735c0f;
+
+  --red-000: #ffeef0;
+  --red-100: #ffdce0;
+  --red-200: #fdaeb7;
+  --red-300: #f97583;
+  --red-400: #ea4a5a;
+  --red-500: #d73a49;
+  --red-600: #cb2431;
+  --red-700: #b31d28;
+  --red-800: #9e1c23;
+  --red-900: #86161d;
+
+  --purple-000: #f5f0ff;
+  --purple-100: #e6dcfd;
+  --purple-200: #d1bcf9;
+  --purple-300: #b392f0;
+  --purple-400: #8a63d2;
+  --purple-500: #6f42c1;
+  --purple-600: #5a32a3;
+  --purple-700: #4c2888;
+  --purple-800: #3a1d6e;
+  --purple-900: #29134e;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Semantic */
+  --shadow: var(--gray-400);
+  --surface-000: var(--white);
+  --surface-100: var(--gray-000);
+  --surface-200: var(--gray-100);
+  --surface-300: var(--gray-200);
+  --focus: var(--blue-500);
+  --hover: var(--blue-200);
+  --active: var(--blue-100);
+  --text: var(--black);
+  --text-hover: var(--gray-700);
+  --text-light: var(--gray-500);
+  --text-faint: var(--gray-300);
+  --text-output: var(--yellow-900);
+  --tip-surface: var(--blue-100);
+  --tip-border: var(--blue-300);
+  --tip-text: var(--blue-700);
+  --tip-info: var(--blue-500);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --shadow: var(--black);
+    --surface-000: var(--black);
+    --surface-100: var(--gray-900);
+    --surface-200: var(--gray-800);
+    --surface-300: var(--gray-700);
+    --focus: var(--blue-400);
+    --hover: var(--blue-800);
+    --active: var(--blue-900);
+    --text: var(--white);
+    --text-hover: var(--blue-300);
+    --text-light: var(--gray-500);
+    --text-faint: var(--gray-700);
+    --text-output: var(--yellow-300);
+    --tip-surface: var(--blue-900);
+    --tip-border: var(--blue-400);
+    --tip-text: var(--blue-200);
+    --tip-info: var(--blue-400);
+  }
+}
+
+[color-scheme="light"] {
+  color-scheme: light;
+  --shadow: var(--gray-400);
+  --surface-000: var(--white);
+  --surface-100: var(--gray-000);
+  --surface-200: var(--gray-100);
+  --surface-300: var(--gray-200);
+  --focus: var(--blue-500);
+  --hover: var(--blue-200);
+  --active: var(--blue-100);
+  --text: var(--black);
+  --text-hover: var(--gray-700);
+  --text-light: var(--gray-500);
+  --text-faint: var(--gray-300);
+  --text-output: var(--yellow-900);
+  --tip-surface: var(--blue-100);
+  --tip-border: var(--blue-300);
+  --tip-text: var(--blue-700);
+  --tip-info: var(--blue-500);
+}
+
+[color-scheme="dark"] {
+  color-scheme: dark;
+  --shadow: var(--black);
+  --surface-000: var(--black);
+  --surface-100: var(--gray-900);
+  --surface-200: var(--gray-800);
+  --surface-300: var(--gray-700);
+  --focus: var(--blue-400);
+  --hover: var(--blue-800);
+  --active: var(--blue-900);
+  --text: var(--white);
+  --text-hover: var(--blue-300);
+  --text-light: var(--gray-500);
+  --text-faint: var(--gray-700);
+  --text-output: var(--yellow-300);
+  --tip-surface: var(--blue-900);
+  --tip-border: var(--blue-400);
+  --tip-text: var(--blue-200);
+  --tip-info: var(--blue-400);
+}
