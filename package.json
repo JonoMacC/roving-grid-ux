@@ -1,6 +1,6 @@
 {
   "name": "roving-grid-ux",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0",
   "description": "roving focus grid for web ui",
   "main": "dist/index.js",
   "source": "src/index.js",
