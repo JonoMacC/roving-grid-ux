@@ -9,10 +9,6 @@
   color: var(--surface-000);
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   background-color: var(--surface-000);
   color: var(--text);
