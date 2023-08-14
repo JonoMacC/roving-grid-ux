@@ -224,11 +224,11 @@ const onKeydown = (e) => {
   }
 };
 
-const updateState = (rover, targetSelector) => {
+const onDOMChange = (rover, targetSelector) => {
   const updatedTargets = rover.querySelectorAll(targetSelector);
 
   const columns = numColumns(rover, updatedTargets);
-  const rows = Math.ceil(updatedTargets.length / columns);
+  const rows = numRows(rover, updatedTargets);
 
   const rx = state.get(rover);
   const currentColumns = rx.columns;
@@ -236,10 +236,24 @@ const updateState = (rover, targetSelector) => {
   const currentRowIndex = Math.floor(currentIndex / currentColumns);
   const currentColumnIndex = currentIndex % currentColumns;
 
-  const index =
+  const targetIndex =
     Math.min(currentRowIndex, rows - 1) * columns +
     Math.min(currentColumnIndex, columns - 1);
-  const startingPoint = updatedTargets[index];
+  const targetPoint = updatedTargets[targetIndex];
+
+  let startingPoint, index;
+  if (!(targetPoint.disabled || targetPoint.inert)) {
+    startingPoint = targetPoint;
+    index = targetIndex;
+  } else {
+    for (const target of updatedTargets) {
+      if (!target.disabled && !target.inert) {
+        startingPoint = target;
+        break;
+      }
+    }
+    index = [...updatedTargets].indexOf(startingPoint);
+  }
 
   updatedTargets.forEach((t) => (t.tabIndex = -1));
   startingPoint.tabIndex = 0;
@@ -252,6 +266,18 @@ const updateState = (rover, targetSelector) => {
     rows,
     active: startingPoint,
     index,
+  });
+};
+
+const onResize = (rover) => {
+  const rx = state.get(rover);
+  const columns = numColumns(rover, [...rx.targets]);
+  const rows = numRows(rover, [...rx.targets]);
+
+  state.set(rover, {
+    ...rx,
+    columns,
+    rows,
   });
 };
 
@@ -301,7 +327,7 @@ const createMutationObserver = (rover, targetSelector) => {
   const mo = new MutationObserver((mutationList, observer) => {
     mutationList.forEach((mutation) => {
       if (mutation.type === "childList" && rover.contains(mutation.target)) {
-        updateState(rover, targetSelector);
+        onDOMChange(rover, targetSelector);
       }
     });
   });
@@ -317,7 +343,7 @@ const createMutationObserver = (rover, targetSelector) => {
 const createResizeObserver = (rover, targetSelector) => {
   const ro = new ResizeObserver((entries) => {
     for (const entry of entries) {
-      updateState(rover, targetSelector);
+      onResize(rover);
     }
   });
 
@@ -405,7 +431,14 @@ export const rovingGrid = ({
   VKMap = {},
 }) => {
   const targets = rover.querySelectorAll(targetSelector);
-  const startingPoint = targets[0];
+  let startingPoint;
+  for (const target of targets) {
+    if (!target.disabled && !target.inert) {
+      startingPoint = target;
+      break;
+    }
+  }
+  const index = [...targets].indexOf(startingPoint);
   const columns = numColumns(rover, targets);
   const rows = numRows(rover, targets);
   const keyBinds = keyLookup(VKMap);
@@ -420,7 +453,7 @@ export const rovingGrid = ({
     targets,
     wrap,
     active: startingPoint,
-    index: 0,
+    index,
     rows,
     columns,
     focused: false,
