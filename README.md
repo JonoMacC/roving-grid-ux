@@ -3,7 +3,7 @@
 Adds keyboard grid-based navigation to a DOM node
 
 **Based on** the work done by [Adam Argyle on roving ux](https://github.com/argyleink/roving-ux)  
-**Try it** at [Roving Grid Playground] and [Glyph Browser]
+**Try it** at [Roving Grid Playground](https://roving-grid.netlify.app/grid-playground) and [Glyph Browser](https://roving-grid.netlify.app/glyph-browser)
 
 ## Features
 
