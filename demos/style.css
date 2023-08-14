@@ -1,0 +1,417 @@
+@import "base.css";
+
+::selection {
+  background-color: var(--text);
+  color: var(--surface-000);
+}
+
+html {
+  --stop-color-01: var(--blue-900);
+  --stop-color-02: var(--blue-400);
+}
+
+[color-scheme="light"] {
+  --stop-color-01: var(--blue-900);
+  --stop-color-02: var(--blue-400);
+}
+
+[color-scheme="dark"] {
+  --stop-color-01: var(--blue-400);
+  --stop-color-02: var(--blue-800);
+}
+
+body {
+  margin: 0;
+  padding: var(--space-2);
+  display: grid;
+  grid-template-rows: auto minmax(300px, 1fr) auto;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  min-block-size: 100dvb;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+header {
+  text-align: center;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4.931cqw + 1.344rem, 4.5rem);
+  margin-bottom: 0;
+  margin-top: 0.25em;
+  color: var(--white);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.233vw + 1.211rem, 2rem);
+}
+
+header p {
+  font-size: clamp(1rem, 0.616vw + 0.856rem, 1.25rem);
+  font-weight: 500;
+  color: var(--white);
+}
+
+nav {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  container: demo-container / size;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  --width: min(100%, 480px);
+  grid-template-columns: var(--width);
+  grid-template-rows: auto;
+  gap: var(--space-3);
+  width: 100%;
+  justify-content: center;
+  counter-set: card-counter;
+  perspective: 1000px;
+}
+
+nav li {
+  display: contents;
+}
+
+a {
+  outline-style: solid;
+  outline-width: 4px;
+  outline-offset: -4px;
+  outline-color: transparent;
+  color: inherit;
+}
+
+a.card {
+  text-decoration: none;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto 112px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "counter image"
+    "header image";
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  background-color: var(--surface-200);
+  max-inline-size: 500px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-width: 4px;
+  transform-style: preserve-3d;
+  will-change: translate;
+  transition: translate 150ms cubic-bezier(0, 0.55, 0.45, 1);
+  box-shadow: 0 0 0 1px var(--surface-400);
+}
+
+.card:focus {
+  outline-color: var(--focus);
+  box-shadow: 0 0 0 1px var(--hover);
+  animation: activated-background 800ms cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.card:hover {
+  background-color: var(--surface-300);
+  border-top-color: var(--blue-500);
+  translate: 0 0 50px;
+  box-shadow: 0 0 0 1px var(--hover);
+}
+
+
+
+.card::before {
+  counter-increment: card-counter;
+  content: counter(card-counter, decimal-leading-zero);
+  grid-area: counter;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(2rem, 0.616vw + 0.856rem, 3rem);
+}
+
+.card h2 {
+  font-size: clamp(1.125rem, 0.924cqw + 0.908rem, 1.5rem);
+  margin-bottom: 0;
+  grid-area: header;
+}
+
+.hero {
+  position: relative;
+  grid-area: image;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  display: block;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(224deg,
+      rgba(255, 146, 122, 0.44) 0%,
+      rgba(55, 53, 142, 0) 100%);
+  background-image: linear-gradient(224deg,
+      rgba(31, 135, 255, 0.44) 0%,
+      rgba(55, 53, 142, 0) 100%);
+  background-size: cover;
+  z-index: 1;
+}
+
+@container demo-container (min-width: 720px) and (min-height: 480px) {
+  nav ul {
+    grid-template-columns: repeat(auto-fit, 320px);
+    justify-content: center;
+  }
+
+  .card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: "counter"
+      "header"
+      "image";
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-2);
+    aspect-ratio: 2 / 3;
+  }
+
+  .hero {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+footer {
+  text-align: center;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  width: 100%;
+}
+
+footer a {
+  flex-grow: 1;
+  padding: var(--space-3);
+  color: inherit;
+}
+
+footer a:hover {
+  background-color: color-mix(in srgb, var(--surface-300) 70%, transparent);
+}
+
+footer a:focus {
+  outline-color: var(--focus);
+  animation: activated-background-2 800ms cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  perspective: 1000px;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--surface-000);
+}
+
+.horizon {
+  position: relative;
+  width: 100dvw;
+  height: max(100dvh, 600px);
+  background-image: linear-gradient(to bottom,
+      var(--stop-color-01),
+      var(--stop-color-02),
+      var(--surface-000) 70%);
+  background-size: cover;
+  background-repeat: repeat-x;
+  transform-origin: top center;
+  transform: rotateX(30deg);
+}
+
+@supports (color-interpolation: oklch) {
+  .horizon {
+    background-image: linear-gradient(in oklch to bottom,
+        var(--stop-color-01),
+        var(--stop-color-02),
+        var(--surface-000) 70%);
+  }
+}
+
+.horizon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.7;
+  background-color: transparent;
+  background-image: linear-gradient(var(--surface-300) 1px, transparent 1px),
+    linear-gradient(to right, var(--surface-300) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-repeat: repeat;
+  animation: track 6s linear infinite;
+  mask-image: linear-gradient(transparent, black 75%, black 85%, transparent);
+  z-index: 1;
+  mix-blend-mode: color-dodge;
+}
+
+.horizon::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../assets/noise-web.webp);
+  animation: noise 900ms linear infinite;
+  opacity: 0.2;
+  mix-blend-mode: color-dodge;
+}
+
+@prefers-reduced-motion {
+
+  .horizon::after,
+  .horizon::before {
+    animation: none;
+  }
+}
+
+@keyframes noise {
+
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  10% {
+    background-position: -5% -10%;
+  }
+
+  20% {
+    background-position: -15% 5%;
+  }
+
+  30% {
+    background-position: 7% -25%;
+  }
+
+  40% {
+    background-position: 20% 25%;
+  }
+
+  50% {
+    background-position: -25% 10%;
+  }
+
+  60% {
+    background-position: 15% 5%;
+  }
+
+  70% {
+    background-position: 0 15%;
+  }
+
+  80% {
+    background-position: 25% 35%;
+  }
+
+  90% {
+    background-position: -10% 10%;
+  }
+
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  10% {
+    background-position: -5% -10%;
+  }
+
+  20% {
+    background-position: -15% 5%;
+  }
+
+  30% {
+    background-position: 7% -25%;
+  }
+
+  40% {
+    background-position: 20% 25%;
+  }
+
+  50% {
+    background-position: -25% 10%;
+  }
+
+  60% {
+    background-position: 15% 5%;
+  }
+
+  70% {
+    background-position: 0 15%;
+  }
+
+  80% {
+    background-position: 25% 35%;
+  }
+
+  90% {
+    background-position: -10% 10%;
+  }
+}
+
+@keyframes track {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 48px;
+  }
+}
+
+@keyframes activated-background {
+  from {
+    background-color: var(--focus);
+  }
+
+  to {
+    background-color: var(--surface-200);
+  }
+}
+
+@keyframes activated-background-2 {
+  from {
+    background-color: var(--focus);
+  }
+
+  to {
+    background-color: unset;
+  }
+}
