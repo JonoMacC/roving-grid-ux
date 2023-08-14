@@ -287,7 +287,7 @@ footer a:focus {
   left: 0;
   bottom: 0;
   right: 0;
-  background: url(../assets/noise-web.webp);
+  background: url(./assets/noise-web.webp);
   animation: noise 900ms linear infinite;
   opacity: 0.2;
   mix-blend-mode: color-dodge;
