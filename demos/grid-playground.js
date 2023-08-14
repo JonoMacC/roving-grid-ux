@@ -243,7 +243,7 @@ grid.addEventListener("wheel", (e) => {
 
   grid.style.setProperty("--rows", rows);
   grid.style.setProperty("--columns", columns);
-  createGrid(rows, columns);
+  delegateGrid();
   demo.__controllers.forEach((c) => {
     if (c.property === "rows") {
       c.setValue(rows);
