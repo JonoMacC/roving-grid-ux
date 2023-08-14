@@ -67,10 +67,8 @@ updateRover(
  */
 ```
 
-- Treat left as left and right as right
 - Directional keys for horizontal movements are swapped for Rtl (Home and End keys excepted)
-- Any number of keys can be bound to a virtual key. Use JavaScript `Event.key`
-  names.
+- Multiple keys can be bound to a virtual key. Use JavaScript `Event.key` names.
 - Key combinations should be in order: Ctrl (^), Alt (⌥), Shift (⇧), Meta (⌘).
 
 ## Virtual Key Positions
