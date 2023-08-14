@@ -19,9 +19,21 @@ Adds keyboard grid-based navigation to a DOM node
 - Add keyboard navigation to custom components
 - Prototype a game or custom interaction pattern
 
-## Getting Started
+## Installation
 
-TBD...
+```bash
+npm i roving-grid-ux
+```
+
+## Importing
+
+```javascript
+// import roving grid from npm
+import { rovingGrid } from "roving-grid-ux";
+
+// import roving grid and updater from npm
+import { rovingGrid, updateRover } from "roving-grid-ux";
+```
 
 ## API
 

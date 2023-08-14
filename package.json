@@ -1,10 +1,14 @@
 {
   "name": "roving-grid-ux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "roving focus grid for web ui",
-  "main": "dist/index.js",
   "source": "src/index.js",
-  "exports": "./dist/index.modern.js",
+  "types": "src/index.d.ts",
+  "type": "module",
+  "exports": {
+    "default": "./dist/index.modern.js"
+  },
+  "main": "dist/index.cjs",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "scripts": {
