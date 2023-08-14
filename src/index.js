@@ -23,6 +23,16 @@
  * @typedef {Object} KeyLookup - A map between key combinations and virtual keys
  */
 
+/**
+ * @typedef {Object} RoverOptions - Options for roving grid
+ * @param {boolean} [options.wrap=true] - Whether focus wraps around lines
+ * @param {VKMap} [options.VKMap={}] - The virtual key map for key combos
+ */
+
+/**
+ * @typedef {MutationObserver|ResizeObserver} AnyObserver
+ */
+
 const state = new Map();
 const isRtl =
   window.getComputedStyle(document.documentElement).direction === "rtl";
@@ -67,6 +77,7 @@ const keyCombo = (e) => {
 /**
  * Swaps a key combo with a key combo in a list of key combos.
  * Used to translate from Ltr to Rtl for HOME and END virtual keys
+ *
  * @param {KeyCombo[]} keys - The key combos to swap with
  * @param {KeyCombo} key - The key to swap
  * @returns {KeyCombo} The swapped key
@@ -87,6 +98,7 @@ const swapKeys = (keys, key) => {
 
 /**
  * Returns a virtual key lookup for each key combination, handles Rtl
+ *
  * @param {VKMap} [VKMap] - The virtual key map
  * @returns {KeyLookup} The virtual key lookup map for each key combination
  */
@@ -224,6 +236,14 @@ const onKeydown = (e) => {
   }
 };
 
+/**
+ * When the elements in the roving grid changes, updates the rows and columns
+ * and the focused element while keeping the same row and column index where
+ * possible
+ *
+ * @param {HTMLElement} rover - The roving grid element
+ * @param {string} targetSelector - The CSS target selector
+ */
 const onDOMChange = (rover, targetSelector) => {
   const updatedTargets = rover.querySelectorAll(targetSelector);
 
@@ -269,6 +289,10 @@ const onDOMChange = (rover, targetSelector) => {
   });
 };
 
+/**
+ * When the roving grid is resized, updates the number of columns and rows
+ * @param {HTMLElement} rover - The roving grid element
+ */
 const onResize = (rover) => {
   const rx = state.get(rover);
   const columns = numColumns(rover, [...rx.targets]);
@@ -281,9 +305,18 @@ const onResize = (rover) => {
   });
 };
 
-const createRoverObserver = (rover, { observers = [] } = {}) => {
+/**
+ * Observes the roving grid's parent node for mutations (nodes added/removed)
+ * When the roving grid is removed, it detaches event listeners and disconnects
+ * any observers passed in as arguments
+ *
+ * @param {HTMLElement} rover - The roving grid element
+ * @param {AnyObserver[]} observers - A list of observers for the roving grid
+ * @returns {MutationObserver} The mutation observer
+ */
+const createRoverObserver = (rover, observers = []) => {
   const parent = rover.parentNode;
-  const mo = new MutationObserver((mutationList, observer) => {
+  const mo = new MutationObserver((mutationList) => {
     mutationList
       .filter((x) => x.removedNodes.length > 0)
       .forEach((mutation) => {
@@ -323,8 +356,16 @@ const createRoverObserver = (rover, { observers = [] } = {}) => {
   return mo;
 };
 
+/**
+ * Observes the roving grid and its children for mutations (nodes added/removed)
+ * and calls onDOMChange callback
+ *
+ * @param {HTMLElement} rover - The roving grid element
+ * @param {string} targetSelector - The CSS target selector
+ * @returns {MutationObserver} The mutation observer
+ */
 const createMutationObserver = (rover, targetSelector) => {
-  const mo = new MutationObserver((mutationList, observer) => {
+  const mo = new MutationObserver((mutationList) => {
     mutationList.forEach((mutation) => {
       if (mutation.type === "childList" && rover.contains(mutation.target)) {
         onDOMChange(rover, targetSelector);
@@ -340,16 +381,19 @@ const createMutationObserver = (rover, targetSelector) => {
   return mo;
 };
 
+/**
+ * Observes the roving grid and its targets for size changes and calls
+ * onResize callback
+ *
+ * @param {HTMLElement} rover - The roving grid element
+ * @param {string} targetSelector - The CSS target selector
+ * @returns {ResizeObserver} The resize observer
+ */
 const createResizeObserver = (rover, targetSelector) => {
-  const ro = new ResizeObserver((entries) => {
-    for (const entry of entries) {
-      onResize(rover);
-    }
-  });
+  const ro = new ResizeObserver(() => onResize(rover));
 
-  ro.observe(rover);
-  rover.querySelectorAll(targetSelector).forEach((t) => {
-    ro.observe(t);
+  [rover, ...rover.querySelectorAll(targetSelector)].forEach((el) => {
+    ro.observe(el);
   });
 
   return ro;
@@ -420,7 +464,7 @@ const numRows = (container, targets) => {
 /**
  * @param {Object} props - The props object
  * @param {HTMLElement} props.element - The target container element
- * @param {string} [props.target] - The selector for focus targets (e.g. cells)
+ * @param {string} [props.target] - The CSS selector for focus targets
  * @param {boolean} [props.wrap=true] - Whether focus wraps around lines
  * @param {VKMap} [props.VKMap={}] - The virtual key map for key combos
  */
@@ -469,12 +513,6 @@ export const rovingGrid = ({
   const ro = createResizeObserver(rover, targetSelector);
   createRoverObserver(rover, { observers: [mo, ro] });
 };
-
-/**
- * @typedef {Object} RoverOptions - Options for roving grid
- * @param {boolean} [options.wrap=true] - Whether focus wraps around lines
- * @param {VKMap} [options.VKMap={}] - The virtual key map for key combos
- */
 
 /**
  * Updates the rover for on-the-fly customization of `wrap` and `VKMap`
