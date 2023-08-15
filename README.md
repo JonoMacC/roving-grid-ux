@@ -7,10 +7,10 @@ Adds keyboard grid-based navigation to a DOM node
 
 ## Features
 
-- Automatic Rtl support
+- Rtl support
 - Customizable key-bindings (W, A, S, D ? 👀)
 - Configurable wrapping behavior between rows
-- Maintains focus when DOM changes (add or remove nodes)
+- Keeps focus when DOM changes (add or remove nodes)
 - Updates when children are programmatically focused by an external component
 - Children are focused by `pointerdown`
 
@@ -25,9 +25,14 @@ Adds keyboard grid-based navigation to a DOM node
 npm i roving-grid-ux
 ```
 
+CDN: [https://cdn.skypack.dev/roving-grid-ux]
+
 ## Importing
 
 ```javascript
+// import from CDN
+import { rovingGrid } from "https://cdn.skypack.dev/roving-grid-ux'
+
 // import roving grid from npm
 import { rovingGrid } from "roving-grid-ux";
 
@@ -103,9 +108,7 @@ If no custom keybindings are provided, the following defaults are used:
 
 ## Programmatic Focus
 
-A custom location can be focused by setting its `tabindex` to 0 and then calling
-its `focus` method. The grid will update its internal representation of the
-focused element.
+A custom location can be focused by calling its `focus` method. The grid will update its internal representation of the focused element.
 
 ## Example Usage
 
@@ -155,6 +158,3 @@ a keyboard navigable grid.
 ## Learn
 
 [ARIA grid interaction pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/)
-
-Note that the default behavior for "Ctrl+Home" and "Ctrl+End" implemented here
-differs from the above recommendations.
