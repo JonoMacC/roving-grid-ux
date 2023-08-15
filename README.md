@@ -1,5 +1,9 @@
 # roving-grid-ux
 
+![NPM Downloads](https://img.shields.io/npm/dw/roving-grid-ux)
+![NPM Latest](https://img.shields.io/npm/v/roving-grid-ux)
+![NPM License](https://img.shields.io/npm/l/roving-grid-ux)
+
 Adds keyboard grid-based navigation to a DOM node
 
 **Based on** the work done by [Adam Argyle on roving ux](https://github.com/argyleink/roving-ux)  
@@ -25,7 +29,7 @@ Adds keyboard grid-based navigation to a DOM node
 npm i roving-grid-ux
 ```
 
-CDN: [https://cdn.skypack.dev/roving-grid-ux]
+CDN: <https://cdn.skypack.dev/roving-grid-ux>
 
 ## Importing
 
