@@ -1,8 +1,9 @@
 # roving-grid-ux
 
-![NPM Downloads](https://img.shields.io/npm/dw/roving-grid-ux)
-![NPM Latest](https://img.shields.io/npm/v/roving-grid-ux)
-![NPM License](https://img.shields.io/npm/l/roving-grid-ux)
+![npm downloads](https://img.shields.io/npm/dt/roving-grid-ux)
+![npm latest](https://img.shields.io/npm/v/roving-grid-ux)
+![npm license](https://img.shields.io/npm/l/roving-grid-ux)
+![npm bundle size](https://img.shields.io/bundlephobia/min/roving-grid-ux)
 
 Adds keyboard grid-based navigation to a DOM node
 
