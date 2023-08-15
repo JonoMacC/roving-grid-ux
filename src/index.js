@@ -25,8 +25,8 @@
 
 /**
  * @typedef {Object} RoverOptions - Options for roving grid
- * @param {boolean} [options.wrap=true] - Whether focus wraps around lines
- * @param {VKMap} [options.VKMap={}] - The virtual key map for key combos
+ * @property {boolean} [options.wrap=true] - Whether focus wraps around lines
+ * @property {VKMap} [options.VKMap={}] - The virtual key map for key combos
  */
 
 /**

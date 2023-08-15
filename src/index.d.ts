@@ -69,5 +69,14 @@ export type KeyLookup = any;
 /**
  * - Options for roving grid
  */
-export type RoverOptions = any;
+export type RoverOptions = {
+    /**
+     * - Whether focus wraps around lines
+     */
+    wrap?: boolean;
+    /**
+     * - The virtual key map for key combos
+     */
+    VKMap?: VKMap;
+};
 export type AnyObserver = MutationObserver | ResizeObserver;
