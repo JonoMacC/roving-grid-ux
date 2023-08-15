@@ -3,14 +3,11 @@
   "version": "1.0.0-alpha",
   "description": "roving focus grid for web ui",
   "source": "src/index.js",
-  "types": "src/index.d.ts",
-  "type": "module",
-  "exports": {
-    "default": "./dist/index.modern.js"
-  },
-  "main": "dist/index.cjs",
+  "exports": "./dist/index.modern.js",
+  "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch"
