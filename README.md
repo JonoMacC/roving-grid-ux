@@ -36,7 +36,7 @@ CDN: <https://cdn.skypack.dev/roving-grid-ux>
 
 ```javascript
 // import from CDN
-import { rovingGrid } from "https://cdn.skypack.dev/roving-grid-ux'
+import { rovingGrid } from "https://cdn.skypack.dev/roving-grid-ux";
 
 // import roving grid from npm
 import { rovingGrid } from "roving-grid-ux";
